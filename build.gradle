@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
     id 'com.github.jruby-gradle.base' version '2.0.2'
 }
 
@@ -31,6 +32,17 @@ tasks.named('test') {
 
 repositories {
     ruby.gems()
+}
+
+jar {
+    from('build/.gems/') {
+        into('gems')
+    }
+    dependsOn 'jrubyPrepare'
+}
+
+application {
+    mainClass = 'concurrent.ruby.perf.Runner'
 }
 
 tasks.register('install-118') {

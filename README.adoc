@@ -12,11 +12,21 @@ ext {
     concurrentRubyVersion = '1.1.8'
 ```
 
+== Testing from IDE
+
 . Install gems:
 
- ./gradlew clean jRubyPrepare 
+ ./gradlew clean jRubyPrepare
 
-== Testing
-
-Run `Runner` class.
+. Run `Runner` class.
 It will print time in milliseconds in the console.
+
+== Testing from Terminal
+
+. Build distribution
+
+ ./gradlew clean installDist
+ 
+. Run
+
+ ./build/install/concurrent-ruby-performance/bin/concurrent-ruby-performance

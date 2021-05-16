@@ -26,7 +26,7 @@ public class Runner {
     private static Ruby jrubyInstance() {
         RubyInstanceConfig config = new RubyInstanceConfig();
         HashMap<String, String> envs = new HashMap<>();
-        envs.put("GEM_PATH", new File("build/.gems/").getAbsolutePath());
+        envs.put("GEM_PATH", new File("build/.gems/:gems").getAbsolutePath());
         new EnvironmentInjector(config)
                 .inject(envs);
         return JavaEmbedUtils.initialize(List.of(), config);
