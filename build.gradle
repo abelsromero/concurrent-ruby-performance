@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'com.github.jruby-gradle.base' version '2.0.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_11
+
+ext {
+    jrubyVersion = '9.2.17.0'
+    preparedGems = new File("$buildDir/preparedGems")
+    concurrentRubyVersion = '1.1.8'
+}
+
+dependencies {
+    implementation "org.jruby:jruby-complete:$jrubyVersion"
+    gems "rubygems:asciidoctor-pdf:1.6.0"
+//    gems "rubygems:concurrent-ruby:$concurrentRubyVersion"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.assertj:assertj-core:3.19.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+repositories {
+    ruby.gems()
+}
+
+tasks.register('install-118') {
+    ext {
+        concurrentRubyVersion = '1.1.8'
+    }
+}

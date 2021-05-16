@@ -1,0 +1,22 @@
+= concurrent-ruby perf regression tester
+
+Project to test performance regression between `concurrent-ruby` version 1.1.7 and 1.1.8.
+
+== Setup
+
+. Set the desired version in `build.gradle`.
++
+```groovy
+ext {
+    // concurrentRubyVersion = '1.1.7'
+    concurrentRubyVersion = '1.1.8'
+```
+
+. Install gems:
+
+ ./gradlew clean jRubyPrepare 
+
+== Testing
+
+Run `Runner` class.
+It will print time in milliseconds in the console.
